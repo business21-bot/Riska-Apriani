@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Galeri foto Riska Apriani - momen indah bersama Riska." />
+    <title>✨ Riska Apriani ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+    <style>
+        /* Reset & Font */
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Montserrat", sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff7f8;
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+        }
+        /* Floating cute emojis */
+        
+        .emoji {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-20px) rotate(180deg);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 1;
+            }
+        }
+        /* Hero Section */
+        
+        .hero {
+            height: 100vh;
+            background: url("images/foto1.jpg") center/cover no-repeat;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .hero-overlay {
+            background-color: rgba(255, 192, 203, 0.6);
+            padding: 50px;
+            text-align: center;
+            color: #fff;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .hero h1 {
+            font-family: "Fredoka One", cursive;
+            font-size: 4rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 5px #ff69b4;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+        
+        .hero .btn {
+            padding: 12px 30px;
+            background-color: #ffb6c1;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .hero .btn::after {
+            content: "💖";
+            position: absolute;
+            right: -30px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: bounce 1s infinite alternate;
+        }
+        
+        @keyframes bounce {
+            0% {
+                transform: translateY(-50%) scale(1);
+            }
+            100% {
+                transform: translateY(-60%) scale(1.2);
+            }
+        }
+        
+        .hero .btn:hover {
+            background-color: #ff99aa;
+        }
+        /* About Section */
+        
+        .about {
+            padding: 80px 20px;
+            text-align: center;
+            background-color: #fff0f3;
+            border-radius: 20px 20px 0 0;
+            position: relative;
+        }
+        
+        .about h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff69b4;
+        }
+        
+        .about p {
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        /* Gallery */
+        
+        .gallery {
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .gallery h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: #ff69b4;
+            position: relative;
+        }
+        
+        .gallery h2::after {
+            content: "📸✨";
+            margin-left: 10px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .grid img {
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease, filter 0.3s;
+            opacity: 0;
+            transform: scale(0.95);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .grid img:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+        
+        .grid img.show {
+            opacity: 1;
+            transform: scale(1);
+        }
+        /* Footer */
+        
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            background-color: #ffe4ec;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            position: relative;
+        }
+        
+        footer p {
+            margin-bottom: 15px;
+            color: #555;
+            font-weight: bold;
+        }
+        
+        .social {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .social a svg {
+            width: 35px;
+            height: 35px;
+            fill: #ff69b4;
+            transition: transform 0.3s, fill 0.3s;
+        }
+        
+        .social a:hover svg {
+            transform: scale(1.2) rotate(10deg);
+            fill: #ff1493;
+        }
+        /* Lightbox */
+        
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 15px;
+            box-shadow: 0 0 50px #ff69b4;
+        }
+        
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 3rem;
+            color: #fff;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .close:hover {
+            transform: rotate(90deg);
+        }
+        /* Responsive */
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Floating emojis -->
+    <div class="emoji" style="top: 10%; left: 5%">🌸</div>
+    <div class="emoji" style="top: 20%; left: 80%">💖</div>
+    <div class="emoji" style="top: 70%; left: 20%">✨</div>
+    <div class="emoji" style="top: 60%; left: 60%">🌈</div>
+    <div class="emoji" style="top: 40%; left: 40%">🦄</div>
+
+    <!-- Header / Hero Section -->
+    <header id="home" class="hero">
+        <div class="hero-overlay">
+            <h1>Riska Apriani ✨</h1>
+            <p>Selamat datang di galeri super cute Riska 💖🌸</p>
+            <a href="#gallery" class="btn">Lihat Galeri</a>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2>Tentang Riska 💕</h2>
+        <p>
+            Riska Apriani adalah sosok yang ceria, kreatif, dan selalu membawa kebahagiaan. Selalu mencoba hal baru dan menginspirasi orang-orang di sekitarnya dengan energi positifnya. 🦄✨🌈
+        </p>
+    </section>
+
+    <!-- Galeri Foto -->
+    <section id="gallery" class="gallery">
+        <h2>Galeri Foto 📸✨</h2>
+        <div class="grid">
+            <img src="foto1.jpeg" alt="Foto 1" class="gallery-item" />
+            <img src="foto2.jpeg" alt="Foto 2" class="gallery-item" />
+            <img src="foto3.jpeg" alt="Foto 3" class="gallery-item" />
+            <img src="foto4.jpeg" alt="Foto 4" class="gallery-item" />
+            <img src="foto5.jpeg" alt="Foto 5" class="gallery-item" />
+            <img src="foto6.jpeg" alt="Foto 6" class="gallery-item" />
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Riska Apriani 💖🌸✨</p>
+        <div class="social">
+            <a href="#" target="_blank">
+                <!-- Instagram -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path
+              d="M224.1 141c-63.6 0-115 51.4-115 115s51.4 115 115 115 115-51.4 115-115-51.4-115-115-115zm0 190c-41.6 0-75-33.4-75-75s33.4-75 75-75 75 33.4 75 75-33.4 75-75 75zm146.4-194.1c0 14.9-12.1 27-27 27-14.9 0-27-12.1-27-27s12.1-27 27-27 27 12.1 27 27zm76.1 27.2c-1.7-35.9-9.9-67.8-36.2-94.1S378 9.6 342.1 7.9c-35.7-2-142.6-2-178.3 0C128 9.6 96 17.8 69.7 44.1S30.3 106 28.6 141.9c-2 35.7-2 142.6 0 178.3 1.7 35.9 9.9 67.8 36.2 94.1s58.2 34.5 94.1 36.2c35.7 2 142.6 2 178.3 0 35.9-1.7 67.8-9.9 94.1-36.2s34.5-58.2 36.2-94.1c2-35.7 2-142.6 0-178.3zm-48.5 209.6c-7.8 19.6-22.9 34.7-42.5 42.5-29.4 11.7-99.3 9-132.5 9s-103.1 2.6-132.5-9c-19.6-7.8-34.7-22.9-42.5-42.5-11.7-29.4-9-99.3-9-132.5s-2.6-103.1 9-132.5c7.8-19.6 22.9-34.7 42.5-42.5 29.4-11.7 99.3-9 132.5-9s103.1-2.6 132.5 9c19.6 7.8 34.7 22.9 42.5 42.5 11.7 29.4 9 99.3 9 132.5s2.6 103.1-9 132.5z"
+            />
+          </svg>
+            </a>
+            <a href="#" target="_blank">
+                <!-- TikTok -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path
+              d="M448 209.8c-16.5 7.4-34.1 11.7-52.6 13.1v91.2c0 77.7-63.1 140.8-140.8 140.8-77.7 0-140.8-63.1-140.8-140.8s63.1-140.8 140.8-140.8c4.3 0 8.5 .2 12.7 .5v62.3c-3.4-.5-6.8-.8-10.2-.8-43.9 0-79.7 35.8-79.7 79.7s35.8 79.7 79.7 79.7 79.7-35.8 79.7-79.7V86.4h61.9c1.5 9.5 2.2 19.2 2.2 28.9v94.5z"
+            />
+          </svg>
+            </a>
+        </div>
+    </footer>
+
+    <!-- Lightbox -->
+    <div id="lightbox" class="lightbox">
+        <span class="close">&times;</span>
+        <img class="lightbox-content" id="lightbox-img" />
+    </div>
+
+    <script>
+        // Lightbox
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        const galleryItems = document.querySelectorAll(".gallery-item");
+        const closeBtn = document.querySelector(".close");
+
+        galleryItems.forEach((img) => {
+            img.addEventListener("click", () => {
+                lightbox.style.display = "flex";
+                lightboxImg.src = img.src;
+            });
+        });
+
+        closeBtn.addEventListener("click", () => {
+            lightbox.style.display = "none";
+        });
+
+        lightbox.addEventListener("click", (e) => {
+            if (e.target === lightbox) lightbox.style.display = "none";
+        });
+
+        // Fade-in animation for gallery images
+        const showImages = () => {
+            galleryItems.forEach((img) => {
+                const rect = img.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 100) {
+                    img.classList.add("show");
+                }
+            });
+        };
+        window.addEventListener("scroll", showImages);
+        window.addEventListener("load", showImages);
+    </script>
+</body>
+
+</html>
